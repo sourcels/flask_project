@@ -1,5 +1,5 @@
 from sqlite3 import *
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 
 def connect_db():
     connect020 = connect("chtoto.db")
@@ -11,7 +11,7 @@ def connect_db():
     connect020.commit()
     cursor020.execute('''SELECT * FROM chtoto ''')
     vazhnaa_peremenaa = cursor020.fetchall()
-    return cursor020
+    return connect020
 
 app = Flask(__name__)
 
@@ -34,14 +34,16 @@ def intereni_goroda():
 @app.route('/goroda_zahistniki/')
 def goroda_zahistniki():
     return render_template("goroda_zahistniki.html")
+
 @app.route('/user_view')
 def user_view():
-    cursor020 = connect_db()
+    connect020 = connect_db()
+    cursor020 = connect020.cursor()
     cursor020.execute('''SELECT * FROM chtoto ''')
     vazhnaa_peremenaa = cursor020.fetchall()
-    return render_template("user_view.html", users = vazhnaa_peremenaa)
+    return render_template("user_view.html", users=vazhnaa_peremenaa)
 
-@app.route('/register')
+@app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
         name = request.form.get('name')
@@ -51,10 +53,28 @@ def register():
         login = request.form.get('login')
         password = request.form.get('password')
 
+        connect020 = connect_db()
+        cursor020 = connect020.cursor()
+        cursor020.execute('''INSERT INTO chtoto(name, years_old, gender, firstname, login, password) VALUES (?,?,?,?,?,?)''', [name, years_old, gender, firstname, login, password])
+        connect020.commit()
+        return redirect(url_for('main_page'))
+    else:
+        return render_template('register.html')
+
 @app.route('/login')
 def login():
-    pass
+    if request.method == 'POST':
+        login = request.form.get('login')
+        password = request.form.get('password')
 
+        sql = '''SELECT login, password FROM chtoto WHERE (?) == login'''
+        connect020 = connect_db()
+        cursor020 = connect020.cursor()
+        cursor020.execute('''SELECT login, password FROM chtoto''')
+
+        return redirect(url_for('main_page'))
+    else:
+        return render_template('login.html')
 
 
 
