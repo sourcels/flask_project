@@ -61,18 +61,22 @@ def register():
     else:
         return render_template('register.html')
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         login = request.form.get('login')
         password = request.form.get('password')
 
-        sql = '''SELECT login, password FROM chtoto WHERE (?) == login'''
+        sql = '''SELECT login, password FROM chtoto WHERE (?) = login AND (?) = password'''
         connect020 = connect_db()
         cursor020 = connect020.cursor()
-        cursor020.execute('''SELECT login, password FROM chtoto''')
-
-        return redirect(url_for('main_page'))
+        cursor020.execute(sql, [login, password])
+        vazhnaa_peremenaa = cursor020.fetchall()
+        print(vazhnaa_peremenaa)
+        if vazhnaa_peremenaa == []:
+            return redirect(url_for('register'))
+        else:
+            return redirect(url_for('main_page'))
     else:
         return render_template('login.html')
 
