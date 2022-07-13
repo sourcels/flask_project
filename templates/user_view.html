@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Головна сторінка{% endblock %}
+{% block content %}
+{% for user in users %}
+{{user['name']}}
+{{user['years_old']}}
+{{user['gender']}}
+{{user['firstname']}}
+
+{% endfor %}
+
+{% endblock %}

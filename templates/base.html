@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="ua" encoding="utf-8">
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+    <body>
+        <h1 class="header_style">Вітаю вас на Українському сайті</h1>
+        <img src="{{ url_for('static', filename='images/flag.jpg') }}" />
+        {% block content %}{% endblock %}
+        <h4>Було виконано учнями 3-Ї класу</h4>
+    </body>
+</html>

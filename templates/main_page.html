@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Головна сторінка{% endblock %}
+{% block content %}
+<h1>Україна</h1>
+<ul>
+    <li><a href="{{url_for('good_places')}}">Найгарніші місця неньки-України</a></li>
+    <li><a href="{{url_for('imba_parks')}}">Найгарніші парки України</a></li>
+    <li><a href="{{url_for('intereni_goroda')}}">Найцікавіші міста України</a></li>
+    <li><a href="{{url_for('goroda_zahistniki')}}">Міста-Герої України - Фортеці незламного духу</a>
+</ul>
+{% endblock %}

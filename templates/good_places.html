@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+{% block title %}Головна сторінка{% endblock %}
+{% block content %}
+<h1>Найгарніші місця України</h1>
+<ul>
+    <li>Площа ринок у Львові</li>
+    <img width="100" height="111" src="{{ url_for('static', filename='images/plosha_lviv.jpeg') }}" />
+    <li>Оперний театр в Одесі</li>
+    <li>Уманський парк "Софіївка"</li>
+    <li>Тунель любові</li>
+    <li>Озеро Синевир</li>
+    <li>Шацькі Озера</li>
+    <li>Заповідник Асканія-Нова</li>
+</ul>
+{% endblock %}
