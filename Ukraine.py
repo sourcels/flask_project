@@ -40,9 +40,9 @@ def user_view():
     cursor020.execute('''SELECT * FROM chtoto ''')
     vazhnaa_peremenaa = cursor020.fetchall()
     return render_template("user_view.html", users = vazhnaa_peremenaa)
-    
-@app.route('/user')
-def create_user():
+
+@app.route('/register')
+def register():
     if request.method == 'POST':
         name = request.form.get('name')
         years_old = request.form.get('years_old')
@@ -55,9 +55,7 @@ def create_user():
 def login():
     pass
 
-@app.route('/register')
-def register():
-    pass
+
 
 
 app.run(debug=True)
