@@ -51,5 +51,13 @@ def create_user():
         login = request.form.get('login')
         password = request.form.get('password')
 
+@app.route('/login')
+def login():
+    pass
+
+@app.route('/register')
+def register():
+    pass
+
 
 app.run(debug=True)

@@ -5,6 +5,8 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     </head>
     <body>
+        <h3 style="border: 4px blue double; border-radius:20px; margin-left:80%;"><a href="{{url_for('register')}}"></a>Регicтрацiя</h3>
+        <h3 style="border: 4px blue double; border-radius:20px; margin-left:80%;"><a href="{{url_for('login')}}"></a>Логiн</h3>
         <h1 class="header_style">Вітаю вас на Українському сайті</h1>
         <img src="{{ url_for('static', filename='images/flag.jpg') }}" />
         {% block content %}{% endblock %}
